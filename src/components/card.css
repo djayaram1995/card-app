@@ -1,0 +1,27 @@
+.cardDimension {
+    width: 300px;
+    display: inline-block;
+    margin: 40px;
+    cursor: pointer;
+}
+.card {
+    height: 400px;
+}
+.card-text {
+}
+.card-body{
+    width: 300px;
+    overflow: hidden;
+    }
+.imageCard {
+    position: relative;
+}
+.iconDivRight {
+    position: absolute;
+    top: 0px;
+    right: 5px
+}
+.iconDivLeft {
+    position: absolute;
+    top: 0px;
+}

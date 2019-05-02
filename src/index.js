@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faHeart, faEdit, faTrash, faEllipsisV, faShare, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 
+library.add(faEdit, faHeart, faTrash, faEllipsisV, faShare, faShareAlt);
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
