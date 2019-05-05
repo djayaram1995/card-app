@@ -14,12 +14,45 @@ import "./carousel.css";
 import CardComponent from "./card";
 const items = [
   {
-    key:1
+    key: 1,
+    cardData: [
+      {
+        keyData: 1,
+        imageUrl:
+          "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
+        cardText: "This is a bulb"
+      },
+      {
+        keyData: 2,
+        imageUrl:
+          "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
+        cardText: "This is a latest invention please check for issues"
+      }
+    ]
   },
   {
-    key:2
+    key: 2,
+    cardData: [
+      {
+        keyData: 1,
+        imageUrl:
+          "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
+        cardText: "Finished bulb drawing"
+      },
+      {
+        keyData: 2,
+        imageUrl:
+          "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
+        cardText: "Imported the image"
+      },
+      {
+        keyData: 3,
+        imageUrl:
+          "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
+        cardText: "Done building"
+      }
+    ]
   }
-  
 ];
 
 class CarouselComponent extends Component {
@@ -32,10 +65,9 @@ class CarouselComponent extends Component {
     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
-    this.goToIndex= this.goToIndex.bind(this);
+    this.goToIndex = this.goToIndex.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
-    this.toggle = this.toggle.bind(this);
   }
 
   onExiting() {
@@ -56,7 +88,6 @@ class CarouselComponent extends Component {
   }
 
   previous() {
-    
     if (this.animating) return;
     const nextIndex =
       this.state.activeIndex === 0
@@ -69,10 +100,11 @@ class CarouselComponent extends Component {
     this.setState({ activeIndex: newIndex });
   }
 
-  toggle() {
-    this.setState(prevState => ({
-      modal: !prevState.modal
-    }));
+  toggleViewModal(e, card) {
+    e.stopPropagation();
+    this.setState({
+      modal: true
+    });
   }
 
   render() {
@@ -85,27 +117,15 @@ class CarouselComponent extends Component {
           onExited={this.onExited}
           key={item.key}
         >
-          <span onClick={this.toggle}>
-            <CardComponent
-              keyData="1"
-              imageUrl="https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg"
-              cardText="This is a latest invention please check for issues"
-            />
-          </span>
-          <span onClick={this.toggle}>
-            <CardComponent
-              keyData="2"
-              imageUrl="https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg"
-              cardText="This is a latest invention"
-            />
-          </span>
-          <span onClick={this.toggle}>
-            <CardComponent
-              keyData="3"
-              imageUrl="https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg"
-              cardText="This is a latest invention"
-            />
-          </span>          
+          {item.cardData.map((card, index) => (
+            <span key={index} onClick={(e) => this.toggleViewModal(e, card)}>
+              <CardComponent
+                keyData={card.keyData}
+                imageUrl={card.imageUrl}
+                cardText={card.cardText}
+              />
+            </span>
+          ))}
         </CarouselItem>
       );
     });
@@ -135,11 +155,11 @@ class CarouselComponent extends Component {
         />
         <Modal
           isOpen={this.state.modal}
-          toggle={this.toggle}
+          toggle={this.toggleViewModal}
           className={this.props.className}
           backdrop={this.state.backdrop}
         >
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggleViewModal}>Modal title</ModalHeader>
           <ModalBody>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
