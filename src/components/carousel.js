@@ -89,7 +89,7 @@ class CarouselComponent extends Component {
             <CardComponent
               keyData="1"
               imageUrl="https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg"
-              cardText="This is a latest invention"
+              cardText="This is a latest invention please check for issues"
             />
           </span>
           <span onClick={this.toggle}>
@@ -105,29 +105,7 @@ class CarouselComponent extends Component {
               imageUrl="https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg"
               cardText="This is a latest invention"
             />
-          </span>
-          <span onClick={this.toggle}>
-            <CardComponent
-              keyData="4"
-              imageUrl="https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg"
-              cardText="This is a latest invention"
-            />
-          </span>
-          <span onClick={this.toggle}>
-            <CardComponent
-              keyData="5"
-              imageUrl="https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg"
-              cardText="This is a latest invention"
-            />
-          </span>
-          <span onClick={this.toggle}>
-            <CardComponent
-              keyData="6"
-              imageUrl="https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg"
-              cardText="This is a latest invention"
-            />
-          </span>
-          
+          </span>          
         </CarouselItem>
       );
     });

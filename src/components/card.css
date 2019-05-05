@@ -1,27 +1,30 @@
 .cardDimension {
-    width: 300px;
-    display: inline-block;
-    margin: 40px;
-    cursor: pointer;
+  width: 200px;
+  display: inline-block;
+  margin: 40px;
+  cursor: pointer;
 }
 .card {
-    height: 400px;
+  height: 200px;
 }
 .card-text {
+  width: 200px;
+  padding: 5px;
+  overflow: hidden;
+  text-align: justify;
 }
-.card-body{
-    width: 300px;
-    overflow: hidden;
-    }
 .imageCard {
-    position: relative;
+  position: relative;
 }
 .iconDivRight {
-    position: absolute;
-    top: 0px;
-    right: 5px
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 .iconDivLeft {
-    position: absolute;
-    top: 0px;
+  position: absolute;
+  top: 0px;
+}
+.iconShare {
+  margin-left: 15px;
 }

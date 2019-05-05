@@ -5,33 +5,44 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  Button
+  Button,
+  Label
 } from "reactstrap";
+import "./AddModal.css";
 class AddModal extends Component {
-    closeModal= () => {
-        this.props.closeModal();
-    }
+  closeModal = () => {
+    this.props.closeModal();
+  };
   render() {
     return (
-      <div id="addModalData">
-        <Modal isOpen={true} className={this.props.className}>
-          <ModalHeader toggle={this.closeModal}>Edit</ModalHeader>
-          <ModalBody>
-            <Input
-              type="text"
-              id="name"
-              placeholder="Enter Listitem"
-              required
-              autoComplete="off"
-              autoFocus
-            />
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary">Save</Button>{" "}
-            <Button color="secondary" onClick={this.closeModal}>Cancel</Button>
-          </ModalFooter>
-        </Modal>
-      </div>
+      <Modal isOpen={true} id="addModalData" className={this.props.className}>
+        <ModalHeader toggle={this.closeModal}>Edit</ModalHeader>
+        <ModalBody>
+          <Label htmlFor="listItem">Listitem</Label>
+          <Input
+            type="textarea"
+            id="name"
+            name="listItem"
+            className="textList"
+            placeholder="Enter Listitem"
+            required
+            autoComplete="off"
+            autoFocus
+          />
+          <Label htmlFor="listFile">ListFile</Label>
+          <Input
+          type="file"
+          name="listFile"
+          multiple
+          />
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary">Save</Button>{" "}
+          <Button color="secondary" onClick={this.closeModal}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </Modal>
     );
   }
 }

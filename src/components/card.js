@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  Popover,
-  PopoverBody
-} from "reactstrap";
+import { Card, CardImg, CardText, Popover, PopoverBody } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./card.css";
@@ -58,22 +51,24 @@ class CardComponent extends Component {
             </Popover>
           </div>
           <div className="iconDivRight">
-            <span className="ml-1 btn">
+            <span className="iconShare">
               <FontAwesomeIcon icon="heart" />
             </span>
-            <span className="ml-1 btn">
+            <span className="iconShare">
               <FontAwesomeIcon icon="share-alt" />
             </span>
-            <span className="ml-1 btn">
+            <span className="iconShare">
               <FontAwesomeIcon icon="share" />
             </span>
           </div>
 
-          <CardBody>
-            {this.props.cardText ? (
-              <CardText>{this.props.cardText}</CardText>
-            ) : null}
-          </CardBody>
+          {this.props.cardText ? (
+            <CardText>
+              {this.props.cardText.length < 40
+                ? this.props.cardText
+                : `${this.props.cardText.substr(0, 38)}...ReadMore`}
+            </CardText>
+          ) : null}
         </Card>
       </div>
     );
