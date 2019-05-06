@@ -12,48 +12,7 @@ import {
 } from "reactstrap";
 import "./carousel.css";
 import CardComponent from "./card";
-const items = [
-  {
-    key: 1,
-    cardData: [
-      {
-        keyData: 1,
-        imageUrl:
-          "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
-        cardText: "This is a bulb"
-      },
-      {
-        keyData: 2,
-        imageUrl:
-          "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
-        cardText: "This is a latest invention please check for issues"
-      }
-    ]
-  },
-  {
-    key: 2,
-    cardData: [
-      {
-        keyData: 1,
-        imageUrl:
-          "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
-        cardText: "Finished bulb drawing"
-      },
-      {
-        keyData: 2,
-        imageUrl:
-          "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
-        cardText: "Imported the image"
-      },
-      {
-        keyData: 3,
-        imageUrl:
-          "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
-        cardText: "Done building"
-      }
-    ]
-  }
-];
+
 
 class CarouselComponent extends Component {
   constructor(props) {
@@ -81,7 +40,7 @@ class CarouselComponent extends Component {
   next() {
     if (this.animating) return;
     const nextIndex =
-      this.state.activeIndex === items.length - 1
+      this.state.activeIndex === this.props.cardsData.length - 1
         ? 0
         : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
@@ -91,7 +50,7 @@ class CarouselComponent extends Component {
     if (this.animating) return;
     const nextIndex =
       this.state.activeIndex === 0
-        ? items.length - 1
+        ? this.props.cardsData.length - 1
         : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
@@ -110,7 +69,7 @@ class CarouselComponent extends Component {
   render() {
     const { activeIndex } = this.state;
 
-    const slides = items.map(item => {
+    const slides = this.props.cardsData.map(item => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
@@ -118,8 +77,10 @@ class CarouselComponent extends Component {
           key={item.key}
         >
           {item.cardData.map((card, index) => (
-            <span key={index} onClick={(e) => this.toggleViewModal(e, card)}>
+            <span key={item.key} onClick={(e) => this.toggleViewModal(e, card)}>
               <CardComponent
+                carouselKey={item.key}
+                tabId={this.props.tabId}
                 keyData={card.keyData}
                 imageUrl={card.imageUrl}
                 cardText={card.cardText}
@@ -129,7 +90,6 @@ class CarouselComponent extends Component {
         </CarouselItem>
       );
     });
-
     return (
       <Carousel
         activeIndex={activeIndex}
@@ -138,7 +98,7 @@ class CarouselComponent extends Component {
         interval={false}
       >
         <CarouselIndicators
-          items={items}
+          items={this.props.cardsData}
           activeIndex={activeIndex}
           onClickHandler={this.goToIndex}
         />

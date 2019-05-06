@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
-import classnames from 'classnames';
-import CarouselComponent from './carousel'
-import './tab.css';
+import React, { Component } from "react";
+import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
+import classnames from "classnames";
+import CarouselComponent from "./carousel";
+import "./tab.css";
 
 export default class TabComponent extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class TabComponent extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      activeTab: '1'
+      activeTab: 1
     };
   }
 
@@ -25,41 +25,32 @@ export default class TabComponent extends Component {
     return (
       <div>
         <Nav tabs>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === '1' })}
-              onClick={() => { this.toggle('1'); }}
-            >
-              Tab1
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === '2' })}
-              onClick={() => { this.toggle('2'); }}
-            >
-             Tab2
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === '3' })}
-              onClick={() => { this.toggle('3'); }}
-            >
-              Tab3
-            </NavLink>
-          </NavItem>
+          {this.props.items &&
+            this.props.items.map(tab => (
+              <NavItem key={tab.tabKey}>
+                <NavLink
+                  className={classnames({
+                    active: this.state.activeTab === tab.tabKey
+                  })}
+                  onClick={() => {
+                    this.toggle(tab.tabKey);
+                  }}
+                >
+                  Tab{tab.tabKey}
+                </NavLink>
+              </NavItem>
+            ))}
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId="1">
-            <CarouselComponent />
-          </TabPane>
-          <TabPane tabId="2">
-          <CarouselComponent />
-          </TabPane>
-          <TabPane tabId="3">
-          <CarouselComponent />
-          </TabPane>
+          {this.props.items &&
+            this.props.items.map(tab => (
+              <TabPane key={tab.tabKey} tabId={tab.tabKey}>
+                <CarouselComponent
+                  cardsData={tab.cardsData}
+                  tabId={tab.tabKey}
+                />
+              </TabPane>
+            ))}
         </TabContent>
       </div>
     );
