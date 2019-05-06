@@ -19,9 +19,11 @@ class CardComponent extends Component {
       popoverOpen: !this.state.popoverOpen
     });
   }
-
+  popOver = e=> {
+    e.stopPropagation()
+  }
   render() {
-   return (
+    return (
       <div className="cardDimension">
         <Card>
           <CardImg
@@ -31,13 +33,21 @@ class CardComponent extends Component {
             alt="Card image cap"
           />
           <div className="iconDivLeft">
-            <span id={`editPop${this.props.carouselKey}${this.props.tabId}${this.props.keyData}`} className="ml-1 btn">
+            <span
+              id={`editPop${this.props.carouselKey}${this.props.tabId}${
+                this.props.keyData
+              }`}
+              onClick={this.popOver}
+              className="ml-1 btn"
+            >
               <FontAwesomeIcon icon="ellipsis-v" />
             </span>
             <Popover
               placement="bottom"
               isOpen={this.state.popoverOpen}
-              target={`editPop${this.props.carouselKey}${this.props.tabId}${this.props.keyData}`}
+              target={`editPop${this.props.carouselKey}${this.props.tabId}${
+                this.props.keyData
+              }`}
               toggle={this.toggle}
             >
               <PopoverBody>
