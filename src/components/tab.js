@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
+import {
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Modal,
+  ModalHeader,
+  ModalBody
+} from "reactstrap";
 import classnames from "classnames";
 import CarouselComponent from "./carousel";
 import "./tab.css";
@@ -8,19 +17,28 @@ export default class TabComponent extends Component {
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
     this.state = {
-      activeTab: 1
+      activeTab: 1,
+      modal: false,
+      card: {}
     };
   }
 
-  toggle(tab) {
+  toggle = tab => {
     if (this.state.activeTab !== tab) {
       this.setState({
         activeTab: tab
       });
     }
-  }
+  };
+
+  toggleViewModal = card => {
+    this.setState(prevState => ({
+      modal: !prevState.modal,
+      card: card
+    }));
+  };
+
   render() {
     return (
       <div>
@@ -46,12 +64,30 @@ export default class TabComponent extends Component {
             this.props.items.map(tab => (
               <TabPane key={tab.tabKey} tabId={tab.tabKey}>
                 <CarouselComponent
+                  toggleViewModal={this.toggleViewModal}
                   cardsData={tab.cardsData}
                   tabId={tab.tabKey}
                 />
               </TabPane>
             ))}
         </TabContent>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggleViewModal}
+          className={this.props.className}
+          backdrop={true}
+        >
+          <ModalHeader toggle={this.toggleViewModal}>Card</ModalHeader>
+          <ModalBody>
+            <img
+              width="200px"
+              className="imageCard"
+              alt={this.state.card.cardText}
+              src={this.state.card.imageUrl}
+            />
+            <div>{this.state.card.cardText}</div>
+          </ModalBody>
+        </Modal>
       </div>
     );
   }
