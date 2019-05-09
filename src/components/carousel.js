@@ -67,14 +67,14 @@ class CarouselComponent extends Component {
           onExited={this.onExited}
           key={item.key}
         >
-          {item.cardData.map((card, index) => (
-            <span key={item.key} onClick={(e) => this.toggleViewModal(e, card)}>
+          {item.map((card, index) => (
+            <span key={index} onClick={(e) => this.toggleViewModal(e, card)}>
               <CardComponent
-                carouselKey={item.key}
+                carouselKey={index}
                 tabId={this.props.tabId}
-                keyData={card.keyData}
-                imageUrl={card.imageUrl}
-                cardText={card.cardText}
+                keyData={card.listitem_id}
+                imageUrl={card.listitem_details}
+                cardText={card.listitem_content}
               />
             </span>
           ))}
