@@ -60,7 +60,7 @@ class CarouselComponent extends Component {
   render() {
     const { activeIndex } = this.state;
 
-    const slides = this.props.cardsData.map(item => {
+    const slides = this.props.cardsData && this.props.cardsData.map(item => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
