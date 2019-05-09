@@ -13,7 +13,7 @@ var response = {
       "listitem_type": "text",
       "listitem_id": 1,
       "listitem_content": "postman_21_5_listitem_53_updated_1_0707",
-      "listitem_details": "",
+      "listitem_details": "https://www.feit.com/wp-content/uploads/2017/04/Aclearfilamant-800x570.jpg",
       "is_favourite": "N"
     },
     {
