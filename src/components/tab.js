@@ -82,10 +82,10 @@ export default class TabComponent extends Component {
             <img
               width="200px"
               className="imageCard"
-              alt={this.state.card.cardText}
-              src={this.state.card.imageUrl}
+              alt={this.state.card.listitem_content}
+              src={this.state.card.listitem_details}
             />
-            <div>{this.state.card.cardText}</div>
+            <div>{this.state.card.listitem_content}</div>
           </ModalBody>
         </Modal>
       </div>
